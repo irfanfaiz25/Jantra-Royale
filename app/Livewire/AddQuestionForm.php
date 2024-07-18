@@ -11,7 +11,6 @@ class AddQuestionForm extends Component
 {
     public $question;
     public $category_id;
-    public $answer_option;
 
 
     public function addQuestion()
@@ -20,14 +19,12 @@ class AddQuestionForm extends Component
         $validated = $this->validate([
             'question' => 'required|min:5',
             'category_id' => 'required',
-            'answer_option' => 'required'
         ]);
 
         // insert data to database
         Question::create([
             'text' => $validated['question'],
             'category_id' => $validated['category_id'],
-            'answer_option' => $validated['answer_option']
         ]);
 
         // get caetgory name for redirecting
@@ -35,7 +32,6 @@ class AddQuestionForm extends Component
 
         $this->question = '';
         $this->category_id = '';
-        $this->answer_option = '';
 
         return redirect()->to('/question-data/' . $category_name)->with('success', 'Pertanyaan berhasil di tambahkan!');
     }

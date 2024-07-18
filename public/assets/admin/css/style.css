@@ -927,9 +927,73 @@ video {
   background-repeat: no-repeat;
 }
 
+.bg-sidebar{
+  --tw-bg-opacity: 1;
+  background-color: #23284D;
+}
+
+.bg-darkblue{
+  --tw-bg-opacity: 1;
+  background-color: #23284D;
+}
+
+.button-darkblue{
+  --tw-bg-opacity: 1;
+  background-color: #23284D;
+}
+
+.button-darkblue:hover{
+  --tw-bg-opacity: 1;
+  background-color: #1a1e3b;
+  color: #F3CD00;
+}
+
+.border-top {
+  --tw-bg-opacity: 1;
+  border-top-width: 8px;
+  border-color: #23284D;
+}
+
+.bg-sidebar-active{
+  --tw-bg-opacity: 1;
+  background-color: #F3CD00;
+}
+
+.text-sidebar-active {
+  --tw-bg-opacity: 1;
+  color: #23284D;
+}
+
+.text-sidebar-logo {
+  --tw-text-opacity: 1;
+  color: #F3CD00;
+}
+
+.jantra-sidebar li a:hover {
+  --tw-bg-opacity: 1;
+  background-color: #F3CD00;
+  color: #23284D;
+}
+
+.jantra-sidebar li .submenu a:hover {
+  background-color: transparent;
+  color: #F3CD00;
+}
+
+
 .object-cover{
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.bg-card-1 {
+  --tw-bg-opacity: 1;
+  background-color: #F54B00;
+}
+
+.bg-card-2 {
+  --tw-bg-opacity: 1;
+  background-color: #F2A901;
 }
 
 .p-1{

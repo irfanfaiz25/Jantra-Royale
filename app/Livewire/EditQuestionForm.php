@@ -11,16 +11,13 @@ class EditQuestionForm extends Component
     public $question_id;
     public $question;
     public $category_id;
-    public $answer_option;
 
     public function mount($id)
     {
         $question = Question::findOrFail($id);
-
         $this->question_id = $question->id;
         $this->question = $question->text;
         $this->category_id = $question->category_id;
-        $this->answer_option = $question->answer_option;
     }
 
     public function updateQuestion()
@@ -28,12 +25,7 @@ class EditQuestionForm extends Component
         $validated = $this->validate([
             'question' => 'required|min:5',
             'category_id' => 'required',
-            'answer_option' => 'required'
         ]);
-
-        // Question::update([
-        //     ''
-        // ]);
 
         $category_name = Category::where('id', $this->category_id)->pluck('name')->first();
 
@@ -41,7 +33,6 @@ class EditQuestionForm extends Component
 
         $question->text = $validated['question'];
         $question->category_id = $validated['category_id'];
-        $question->answer_option = $validated['answer_option'];
 
         $question->save();
 

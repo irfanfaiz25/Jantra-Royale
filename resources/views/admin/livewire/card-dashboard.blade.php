@@ -8,8 +8,8 @@
                 <div class="text-sm font-medium text-gray-400">Total pertanyaan</div>
             </div>
         </div>
-        <a href="{{ route('question-data', 'performance') }}"
-            class="text-blue-500 font-medium text-sm hover:text-blue-600">View details</a>
+        <a href="{{ route('question-data', 'performance') }}" class="text-sidebar-active font-medium text-sm">View
+            details</a>
     </div>
     <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
         <div class="flex justify-between mb-6">
@@ -20,7 +20,7 @@
                 <div class="text-sm font-medium text-gray-400">Total responden</div>
             </div>
         </div>
-        <a href="{{ route('responden-data') }}" class="text-blue-500 font-medium text-sm hover:text-blue-600">View
+        <a href="{{ route('responden-data') }}" class="text-sidebar-active font-medium text-sm">View
             details</a>
     </div>
 </div>

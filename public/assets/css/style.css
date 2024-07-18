@@ -1,3 +1,47 @@
 * {
     font-family: 'Roboto';
   }
+
+  .bg-darkblue{
+    --tw-bg-opacity: 1;
+    background-color: #23284D;
+  }
+
+  .button-darkyellow{
+    --tw-bg-opacity: 1;
+    background-color: #F3CD00;
+    color: #23284D;
+  }
+
+  .button-darkyellow:hover{
+    --tw-bg-opacity: 1;
+    background-color: #ceaf00;
+    color: #23284D;
+  }
+
+  .bg-darkblue-user{
+    --tw-bg-opacity: 1;
+    background-color: #23284d6f;
+  }
+
+  .text-darkblue{
+    --tw-bg-opacity: 1;
+    color: #23284D;
+  }
+  
+  .button-darkblue{
+    --tw-bg-opacity: 1;
+    background-color: #23284D;
+  }
+  
+  .button-darkblue:hover{
+    --tw-bg-opacity: 1;
+    background-color: #1a1e3b;
+    color: #F3CD00;
+  }
+  
+  .border-top {
+    --tw-bg-opacity: 1;
+    border-top-width: 8px;
+    border-color: #23284D;
+  }

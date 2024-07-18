@@ -1,8 +1,8 @@
 <!-- start: Sidebar -->
-<div class="fixed left-0 top-0 w-64 h-full bg-gray-600 p-4 z-50 sidebar-menu transition-transform">
+<div class="fixed left-0 top-0 w-64 h-full bg-sidebar p-4 z-50 sidebar-menu transition-transform">
     <a href="#" class="flex items-center pb-4 border-b border-b-gray-800">
-        <img src="{{ asset('img/simobile-logo.png') }}" alt="" class="w-8 h-8 rounded object-cover">
-        <span class="text-lg font-bold text-white ml-3">Si-Mobile Admin</span>
+        <img src="{{ asset('img/logo.png') }}" alt="jantra-logo" class="w-8 h-5.8 rounded">
+        <span class="text-lg font-bold text-white ml-3"><span class="text-sidebar-logo">eval</span>-Jantra Royale</span>
     </a>
 
     @if (isset($tab))

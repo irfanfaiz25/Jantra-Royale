@@ -25,32 +25,33 @@
         <div class="flex justify-between mb-4 items-start">
             <div class="font-semibold capitalize">Data Responden</div>
             <button wire:click='exportReport' type="button"
-                class="bg-gray-200 hover:bg-gray-600 text-gray-600 hover:text-gray-200 font-bold py-2 px-6 mr-2 rounded">Export</button>
+                class="bg-darkblue hover:bg-blue-900 text-gray-50 font-bold py-2 px-6 mr-2 rounded">Export</button>
         </div>
         <div class="overflow-x-auto">
             <table class="w-full min-w-[540px]" wire:poll.keep-alive.10s='refreshData'>
                 <thead>
                     <tr>
                         <th rowspan="2"
-                            class="text-[12px] uppercase tracking-wide font-medium text-gray-500 py-2 px-4 bg-gray-200 text-left">
+                            class="text-[12px] uppercase tracking-wide font-medium text-gray-50 py-2 px-4 bg-darkblue text-left">
                             NO</th>
                         <th rowspan="2"
-                            class="text-[12px] uppercase tracking-wide font-medium text-gray-500 py-2 px-4 bg-gray-200 text-left">
-                            Nama</th>
+                            class="text-[12px] uppercase tracking-wide font-medium text-gray-50 py-2 px-4 bg-darkblue text-left">
+                            Nama
+                        </th>
                         @foreach ($questionsGroupedByCategory as $category => $questions)
                             <th colspan="{{ $questions->count() }}"
-                                class="text-[12px] uppercase tracking-wide font-medium text-gray-500 py-2 px-4 bg-gray-200 text-center">
+                                class="text-[12px] uppercase tracking-wide font-medium text-gray-50 py-2 px-4 bg-darkblue text-center">
                                 {{ $category }}</th>
                         @endforeach
                         <th rowspan="2"
-                            class="text-[12px] uppercase tracking-wide font-medium text-gray-500 py-2 px-4 bg-gray-200 text-left">
+                            class="text-[12px] uppercase tracking-wide font-medium text-gray-50 py-2 px-4 bg-darkblue text-left">
                         </th>
                     </tr>
                     <tr>
                         @foreach ($questionsGroupedByCategory as $category => $questions)
                             @foreach ($questions as $index => $question)
                                 <th
-                                    class="text-[12px] uppercase tracking-wide font-medium text-gray-500 py-2 px-4 bg-gray-200 text-left">
+                                    class="text-[12px] uppercase tracking-wide font-medium text-gray-50 py-2 px-4 bg-darkblue text-left">
                                     P{{ $index + 1 }}</th>
                             @endforeach
                         @endforeach
@@ -65,7 +66,13 @@
                             </td>
                             <td class="py-2 px-4 border-b border-b-gray-50">
                                 <span
-                                    class="text-[13px] font-medium text-gray-700">{{ $respondent['respondent_name'] }}</span>
+                                    class="text-[13px] font-medium text-gray-700 flex space-x-1 md:space-x-0 justify-between">
+                                    <p>{{ $respondent['respondent_name'] }}</p>
+                                    <button wire:click="setDetailsModalOpen({{ $respondent['respondent_id'] }})"
+                                        class="text-xs py-1 px-1.5 button-darkblue text-white rounded-md">
+                                        <i class="ri-information-line"></i>
+                                    </button>
+                                </span>
                             </td>
                             @foreach ($questionsGroupedByCategory as $category => $questions)
                                 @foreach ($questions as $question)
@@ -77,8 +84,8 @@
                             @endforeach
                             {{-- @dd($respondent['respondent_code']) --}}
                             <td class="py-2 px-4 border-b border-b-gray-50">
-                                <button wire:click='deleteRespondent("{{ $respondent['respondent_code'] }}")'
-                                    class="text-[13px] font-medium text-gray-700"><i
+                                <button wire:click="setConfirmationModalOpen('{{ $respondent['respondent_code'] }}')"
+                                    class="text-[13px] font-medium text-white bg-red-500 px-2 py-1 rounded-md"><i
                                         class="ri-delete-bin-line"></i></button>
                             </td>
                         </tr>
@@ -89,6 +96,82 @@
         </div>
 
     </div>
+
+    @if ($isConfirmationModalShow)
+        <div class="fixed inset-0 flex items-center justify-center z-50">
+            <div class="bg-white p-6 rounded shadow-lg max-w-sm w-full relative z-10 mx-2 lg:mx-0">
+                <h2 class="text-lg font-bold mb-4">Konfirmasi Hapus</h2>
+                <p>Anda yakin akan menghapus data responden tersebut?</p>
+                <div class="mt-4 flex justify-end space-x-2">
+                    <button wire:click="setConfirmationModalClose"
+                        class="px-4 py-1.5 bg-gray-300 rounded text-sm font-medium">Cancel</button>
+                    <button wire:click='deleteRespondent'
+                        class="px-4 py-1.5 bg-red-500 text-white rounded text-sm font-medium">Hapus</button>
+                </div>
+            </div>
+            <!-- Background overlay -->
+            <div wire:click="setConfirmationModalClose" class="fixed inset-0 bg-black opacity-50 z-0">
+            </div>
+        </div>
+    @endif
+
+    @if ($isDetailsModalShow)
+        <div class="fixed inset-0 flex items-center justify-center z-50">
+            <div class="bg-white p-6 rounded shadow-lg max-w-sm w-full relative z-10 mx-2 lg:mx-0">
+                <h2 class="text-lg font-bold mb-4">Detail Responden</h2>
+                <table class="text-left font-medium">
+                    <tbody>
+                        <tr>
+                            <td class="flex justify-between">
+                                <p>
+                                    Nama
+                                </p>
+                                <p>
+                                    :
+                                </p>
+                            </td>
+                            <td class="pl-1">
+                                {{ $detailName }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="flex justify-between">
+                                <p>
+                                    Jenis Kelamin
+                                </p>
+                                <p>
+                                    :
+                                </p>
+                            </td>
+                            <td class="pl-1 capitalize">
+                                {{ $detailGender }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="flex justify-between">
+                                <p>
+                                    Email
+                                </p>
+                                <p>
+                                    :
+                                </p>
+                            </td>
+                            <td class="pl-1">
+                                {{ $detailEmail }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="mt-4 flex justify-end space-x-2">
+                    <button wire:click="setDetailsModalClose"
+                        class="px-4 py-1.5 bg-darkblue text-white rounded text-sm font-medium">Done</button>
+                </div>
+            </div>
+            <!-- Background overlay -->
+            <div wire:click="setDetailsModalClose" class="fixed inset-0 bg-black opacity-50 z-0">
+            </div>
+        </div>
+    @endif
 
 </div>
 

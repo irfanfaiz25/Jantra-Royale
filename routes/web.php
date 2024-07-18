@@ -51,11 +51,9 @@ Route::get('/responden-data', function () {
     ]);
 })->name('responden-data')->middleware('auth');
 
-Route::get('/hasil/{category_id}', function ($category_id) {
+Route::get('/hasil', function () {
     return view('admin.result-data', [
-        'category_id' => $category_id,
-        'active_link' => $category_id,
-        'tab' => 'result'
+        'active_link' => 'result-data',
     ]);
 })->name('result-data')->middleware('auth');
 

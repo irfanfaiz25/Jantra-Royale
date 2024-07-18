@@ -11,14 +11,12 @@ use illuminate\Support\Str;
 
 class UserQuestions extends Component
 {
-    // #[Validate('required')]
     public $respondentName;
-
-    // #[Validate('required')]
     public $respondentGender;
-
-    // #[Validate('required')]
-    public $date;
+    public $email;
+    public $questionUsing;
+    public $questionInterest;
+    public $questionLong;
 
     public $answers = [];
 
@@ -33,7 +31,7 @@ class UserQuestions extends Component
         $this->validate([
             'respondentName' => 'required',
             'respondentGender' => 'required',
-            'date' => 'required'
+            'email' => 'required|email'
         ]);
 
         $questionIds = array_keys(array_filter($this->answers, function ($key) {
@@ -43,7 +41,7 @@ class UserQuestions extends Component
         $answers = array_intersect_key($this->answers, array_flip($questionIds));
         $respondentName = $this->answers['respondentName'];
         $respondentGender = $this->answers['respondentGender'];
-        $date = $this->answers['date'];
+        $email = $this->answers['email'];
 
         $uniqueCode = $this->generateUniqueCode();
 
@@ -52,21 +50,20 @@ class UserQuestions extends Component
                 'respondent_code' => $uniqueCode,
                 'name' => $respondentName,
                 'gender' => $respondentGender,
-                'date' => $date,
+                'email' => $email,
                 'question_id' => $questionId,
                 'answer' => $answers[$questionId],
             ]);
         }
 
-        $this->reset('respondentName', 'respondentGender', 'date');
-        $this->answers = [];
+        $this->resetForm();
 
         session()->flash('success', 'Terimakasih telah bersedia mengisi kuisioner ini.');
     }
 
     public function resetForm()
     {
-        $this->reset('respondentName', 'respondentGender', 'date');
+        $this->reset('respondentName', 'respondentGender', 'email', 'questionUsing', 'questionInterest', 'questionLong');
         $this->answers = [];
     }
 

@@ -28,12 +28,13 @@
         <form action="" class="flex items-center mb-4">
             <div class="relative w-full mr-2">
                 <input wire:model.live.debounce.300ms='search_question' type="text"
-                    class="py-2 pr-4 pl-10 bg-gray-200 text-gray-500 w-full outline-none border border-gray-100 rounded-md text-sm focus:border-gray-700"
+                    class="py-2 pr-4 pl-10 bg-darkblue text-gray-50 w-full outline-none border border-blue-100 rounded-md text-sm focus:border-blue-500"
                     placeholder="Search...">
                 <i class="ri-search-line absolute top-1/2 left-4 -translate-y-1/2 text-gray-400"></i>
             </div>
-            <a href="/add-question" type="button"
-                class="text-sm py-2 pl-4 pr-10 bg-gray-200 text-gray-500 border border-gray-100 rounded-md focus:border-gray-700 outline-none appearance-none bg-select-arrow bg-no-repeat bg-[length:16px_16px] bg-[right_16px_center] hover:bg-gray-300">Tambah
+            <a href="{{ route('add-question') }}" type="button"
+                class="flex text-sm py-2 px-4 button-darkblue text-gray-50 border border-blue-100 rounded-md focus:border-blue-500 outline-none appearance-none">Tambah
+                <i class="ri-add-line"></i>
             </a>
         </form>
         <div class="overflow-x-auto">
@@ -41,19 +42,16 @@
                 <thead>
                     <tr>
                         <th
-                            class="text-[12px] uppercase tracking-wide font-medium text-gray-500 py-2 px-4 bg-gray-200 text-left rounded-tl-md rounded-bl-md">
+                            class="text-[12px] uppercase tracking-wide font-medium text-gray-50 py-2 px-4 bg-darkblue text-left rounded-tl-md rounded-bl-md">
                             NO</th>
                         <th
-                            class="text-[12px] uppercase tracking-wide font-medium text-gray-500 py-2 px-4 bg-gray-200 text-left">
+                            class="text-[12px] uppercase tracking-wide font-medium text-gray-50 py-2 px-4 bg-darkblue text-left">
                             PERTANYAAN</th>
                         <th
-                            class="text-[12px] uppercase tracking-wide font-medium text-gray-500 py-2 px-4 bg-gray-200 text-left">
-                            KATEGORI</th>
+                            class="text-[12px] uppercase tracking-wide font-medium text-gray-50 py-2 px-4 bg-darkblue text-left">
+                            VARIABEL</th>
                         <th
-                            class="text-[12px] uppercase tracking-wide font-medium text-gray-500 py-2 px-4 bg-gray-200 text-left">
-                            Opsi Jawaban</th>
-                        <th
-                            class="text-[12px] uppercase tracking-wide font-medium text-gray-500 py-2 px-4 bg-gray-200 text-left rounded-tr-md rounded-br-md">
+                            class="text-[12px] uppercase tracking-wide font-medium text-gray-50 py-2 px-4 bg-darkblue text-left rounded-tr-md rounded-br-md">
                         </th>
                     </tr>
                 </thead>
@@ -72,25 +70,19 @@
                                     class="text-[13px] font-medium text-gray-700 capitalize">{{ $question->category->name }}</span>
                             </td>
                             <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-700 capitalize">
-                                    tidak <u>{{ $question->answer_option }}</u> / <u>{{ $question->answer_option }}</u>
-                                    / sangat <u>{{ $question->answer_option }}</u>
-                                </span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
                                 <div class="dropdown">
                                     <button type="button"
-                                        class="dropdown-toggle text-gray-400 hover:text-gray-600 text-sm w-6 h-6 rounded flex items-center justify-center bg-gray-50"><i
+                                        class="dropdown-toggle text-gray-50 text-sm w-6 h-6 rounded flex items-center justify-center bg-darkblue"><i
                                             class="ri-more-2-fill"></i></button>
                                     <ul
-                                        class="dropdown-menu shadow-md shadow-black/5 z-30 hidden py-1.5 rounded-md bg-white border border-gray-100 w-full max-w-[140px]">
+                                        class="dropdown-menu shadow-md shadow-black/5 z-30 hidden py-1.5 rounded-md bg-darkblue border border-gray-100 w-full max-w-[140px]">
                                         <li>
                                             <a href="{{ route('edit-question', $question->id) }}"
-                                                class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-blue-500 hover:bg-gray-50">Edit</a>
+                                                class="flex items-center text-[13px] py-1.5 px-4 text-gray-50 hover:bg-yellow-400 hover:text-blue-900">Edit</a>
                                         </li>
                                         <li>
                                             <a wire:click.prevent='deleteQuestion({{ $question->id }})'
-                                                class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-blue-500 hover:bg-gray-50">Hapus</a>
+                                                class="flex items-center text-[13px] py-1.5 px-4 text-gray-50 hover:bg-yellow-400 hover:text-blue-900">Hapus</a>
                                         </li>
                                     </ul>
                                 </div>

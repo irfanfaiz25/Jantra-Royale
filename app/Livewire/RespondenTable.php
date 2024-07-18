@@ -19,6 +19,14 @@ class RespondenTable extends Component
     public $questionsGroupedByCategory;
     public $respondents;
 
+    public $isConfirmationModalShow = false;
+    public $deleteCode;
+
+    public $isDetailsModalShow = false;
+    public $detailName;
+    public $detailEmail;
+    public $detailGender;
+
     public $reportData = [];
 
     public function mount()
@@ -45,25 +53,16 @@ class RespondenTable extends Component
 
         $this->respondents = $respondents->map(function ($respondentGroup) {
             $data = [
-                'respondent_id' => $respondentGroup->first()->respondent_id,
+                'respondent_id' => $respondentGroup->first()->id,
                 'respondent_code' => $respondentGroup->first()->respondent_code,
                 'respondent_name' => $respondentGroup->first()->name,
+                'respondent_email' => $respondentGroup->first()->email,
+                'respondent_gender' => $respondentGroup->first()->gender,
             ];
 
             foreach ($respondentGroup as $respondent) {
                 $answer = $respondent->answer;
-                $answer_code = 'N/A';
-                if ($answer == 'sangat tidak baik' || $answer == 'sangat tidak efisien' || $answer == 'sangat tidak puas') {
-                    $answer_code = '1';
-                } elseif ($answer == 'tidak baik' || $answer == 'tidak efisien' || $answer == 'tidak puas') {
-                    $answer_code = '2';
-                } elseif ($answer == 'ragu-ragu') {
-                    $answer_code = '3';
-                } elseif ($answer == 'baik' || $answer == 'efisien' || $answer == 'puas') {
-                    $answer_code = '4';
-                } elseif ($answer == 'sangat baik' || $answer == 'sangat efisien' || $answer == 'sangat puas') {
-                    $answer_code = '5';
-                }
+                $answer_code = $answer ?? 'N/A';
 
                 $data['Q' . $respondent->question_id] = $answer_code;
             }
@@ -74,10 +73,39 @@ class RespondenTable extends Component
         });
     }
 
-    public function deleteRespondent($code)
+    public function setConfirmationModalOpen($code)
     {
-        Respondent::where('respondent_code', $code)->delete();
+        $this->isConfirmationModalShow = true;
+        $this->deleteCode = $code;
+    }
 
+    public function setConfirmationModalClose()
+    {
+        $this->isConfirmationModalShow = false;
+        $this->reset('deleteCode');
+    }
+
+    public function setDetailsModalOpen($id)
+    {
+        $this->isDetailsModalShow = true;
+
+        $respondent = Respondent::find($id);
+        $this->detailName = $respondent->name;
+        $this->detailEmail = $respondent->email;
+        $this->detailGender = $respondent->gender;
+    }
+
+    public function setDetailsModalClose()
+    {
+        $this->isDetailsModalShow = false;
+        $this->reset('detailName', 'detailEmail', 'detailGender');
+    }
+
+    public function deleteRespondent()
+    {
+        Respondent::where('respondent_code', $this->deleteCode)->delete();
+
+        $this->setConfirmationModalClose();
         $this->dispatch('respondent-deleted', is_deleted: true);
     }
 
@@ -117,8 +145,6 @@ class RespondenTable extends Component
             'respondent_table.pdf'
         );
     }
-
-
 
     public function render()
     {

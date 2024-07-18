@@ -12,8 +12,8 @@ class Respondent extends Model
     protected $fillable = [
         'respondent_code',
         'name',
+        'email',
         'gender',
-        'date',
         'question_id',
         'answer'
     ];

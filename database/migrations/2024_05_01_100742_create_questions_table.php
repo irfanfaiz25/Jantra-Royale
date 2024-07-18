@@ -14,7 +14,6 @@ return new class extends Migration {
             $table->increments('id');
             $table->string('text', 255);
             $table->integer('category_id');
-            $table->string('answer_option', 50);
             $table->timestamps();
         });
     }

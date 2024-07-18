@@ -1,7 +1,7 @@
 <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         @foreach ($chartsData as $index => $chart)
-            <div class="p-4 border rounded shadow">
+            <div class="p-4 rounded-md bg-white">
                 <h3 class="text-lg font-semibold mb-2">{{ $chart['question'] }}</h3>
                 <p class="text-sm text-gray-600 mb-2">Total Respondents: {{ $chart['total'] }}</p>
                 <canvas id="chart{{ $index }}" class="chart"></canvas>

@@ -119,6 +119,10 @@
             margin-top: -18px;
             left: 78% !important;
         }
+
+        .capitalize {
+            text-transform: capitalize;
+        }
     </style>
 </head>
 
@@ -131,7 +135,7 @@
                 <th rowspan="2" class="table-border">
                     Nama</th>
                 @foreach ($questionsGroupedByCategory as $category => $questions)
-                    <th colspan="{{ $questions->count() }}" class="table-border">
+                    <th colspan="{{ $questions->count() }}" class="table-border capitalize">
                         {{ $category }}</th>
                 @endforeach
             </tr>

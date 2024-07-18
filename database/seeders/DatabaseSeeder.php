@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
-            'name' => 'information',
+            'name' => 'information & data',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
-            'name' => 'control',
+            'name' => 'control & security',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -53,97 +53,58 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('questions')->insert([
-            'text' => 'Seberapa cepat Simobile merespons saat melakukan pendaftaran rawat jalan secara online?',
+            'text' => 'Apakah Anda Puas dengan layanan Aplikasi Jantra Royale yang diberikan oleh Jantra Kakikaki?',
             'category_id' => 1,
-            'answer_option' => 'baik',
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
         DB::table('questions')->insert([
-            'text' => 'Seberapa sering Simobile memberikan informasi yang benar tentang jadwal poliklinik dan dokter?',
+            'text' => 'Fitur-fitur yang tersedia pada Jantra Royale mudah dipahami cara penggunaannya dan mudah di akses oleh pengguna.',
             'category_id' => 1,
-            'answer_option' => 'baik',
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
         DB::table('questions')->insert([
-            'text' => 'Seberapa mudah penggunaan Simobile untuk melakukan reservasi rawat jalan?',
-            'category_id' => 1,
-            'answer_option' => 'baik',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('questions')->insert([
-            'text' => 'Bagaimana pendapat anda tentang desain tampilan Simobile secara keseluruhan?',
-            'category_id' => 1,
-            'answer_option' => 'baik',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('questions')->insert([
-            'text' => 'Bagaimana pendapat anda tentang desain tampilan Simobile secara keseluruhan?',
-            'category_id' => 1,
-            'answer_option' => 'baik',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('questions')->insert([
-            'text' => 'Bagaimana pendapat anda tentang desain tampilan Simobile secara keseluruhan?',
-            'category_id' => 1,
-            'answer_option' => 'baik',
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('questions')->insert([
-            'text' => 'Apakah informasi jadwal poliklinik dan dokter yang diberikan oleh Simobile selalu up-to-date?',
+            'text' => 'Aplikasi Jantra Royale memberikan informasi yang tepat dan akurat.',
             'category_id' => 2,
-            'answer_option' => 'baik',
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
         DB::table('questions')->insert([
-            'text' => 'Apakah penggunaan aplikasi Simobile tidak membutuhkan penggunaan data yang banyak?',
+            'text' => 'Apakah penggunaan aplikasi Jantra Royale tidak membutuhkan penggunaan data yang banyak?',
             'category_id' => 3,
-            'answer_option' => 'efisien',
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
         DB::table('questions')->insert([
-            'text' => 'Seberapa aman data pasien yang tersimpan dalam Simobile?',
+            'text' => 'Pengamanan yang terdapat pada Jantra Royale sudah dapat menjaga data atau informasi dari berbagai bentuk kecurangan atau kejahatan.',
             'category_id' => 4,
-            'answer_option' => 'efisien',
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
         DB::table('questions')->insert([
-            'text' => 'Seberapa cepat Simobile dalam memproses reservasi pendaftaran rawat jalan?',
+            'text' => 'Aplikasi Jantra Royale dapat diakses diberbagai perangkat dan media.',
             'category_id' => 5,
-            'answer_option' => 'efisien',
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
         DB::table('questions')->insert([
-            'text' => 'Apakah kinerja sistem Simobile sesuai yang diinginkan?',
+            'text' => 'Aplikasi Jantra Royale dapat memberikan kepuasan dalam memenuhi kebutuhan informasi guna meningkatkan kinerja/pelayanan.',
             'category_id' => 6,
-            'answer_option' => 'baik',
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
         DB::table('users')->insert([
-            'name' => 'RSUD Simo',
-            'username' => 'rsudsimo',
-            'password' => Hash::make('rsudsimo123'),
+            'name' => 'Jantra Royale',
+            'username' => 'jantraroyale',
+            'password' => Hash::make('jantra123'),
             'created_at' => now(),
             'updated_at' => now()
         ]);
